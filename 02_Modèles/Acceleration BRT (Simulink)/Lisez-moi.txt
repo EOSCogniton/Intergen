@@ -1,0 +1,2 @@
+Lancer en premier le script matlab d'initialisation des variables.
+Le fichier simulik s'exécutera tout seul.
