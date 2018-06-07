@@ -11,11 +11,10 @@ h1 = 1; %la hauteur de centre de roulis avant
 h2 = 1; %la hauteur de centre de roulis arrière
 hg = 1; %la hauteur du centre de gravité
 Droll = hg - (h2+ L2*sin(atan((h1+h2)/L))); %différence entre le centre de gravité et le centre de roulis
-
-h = hg-h0 ; %la hauteur du roulis actif
-
+Dpitch_h = 1; %distance entre le centre de gravité et l'axe de tangage
 Droue = 13; %diamètre de la roue en pouce
 Rroue = Droue/2*0.0254 ; %Rayon de la roue en m
+
 
 %% Suspensions
 
@@ -28,12 +27,15 @@ KantirollR = 1; %coefficient de raideur de la bar antiroulis arrière
 
 DrollF = DshockF*E1^2; %coeff d'amortissement effectif avant
 DrollR = DshockR*E2^2; %coeff d'amortissement effectif arrière
-KrollF = KspringF*E1^2/2 + KantirollF %coeff de raideur effectif avant
-KrollR = KspringR*E2^2/2 + KantirollR %coeff de raideur effectif arrière
+KrollF = KspringF*E1^2/2 + KantirollF ; %coeff de raideur effectif avant
+KrollR = KspringR*E2^2/2 + KantirollR ; %coeff de raideur effectif arrière
+
+Kpitch_h = 1 ; %??
+
 
 
 %% Masse et inertie 
-
+g = 9.81 ;
 Mtot = 220 ; %masse total du véhicule
 Ms = 180 ; %masse suspendu (Mtot-Mlas)
 Mpilote = 60; %masse du pilote habillé
@@ -68,5 +70,14 @@ rap(6) = 24/29;
 rap_couronne = 13/45;
 
 t_vit=0.1; %temps du passage de vitesse
+
+%% Paramètres de la simulation
+
+Vx0 = 0; %vitesse longitudinale initiale
+Vy0 = 0; %vitesse latérale initiale
+Wz0 = 0; %vitesse de rotation propre initiale
+X0 = 0;  %absysse initiale
+Y0 = 0;  %ordonnée initiale
+yaw0 = 0; %angle de lacet  initial
 
 

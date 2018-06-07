@@ -1,0 +1,4 @@
+le châssis et les suspension c'est bon,
+il faut :
+-modéliser les roues avec pacejka simple (5 paramètres)
+-modélise le moteur et la transmission
