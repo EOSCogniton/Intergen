@@ -1,0 +1,33 @@
+Sujet:
+DERM/mel/FT/2006/110 - ACENA - nappe carbone
+De:
+ternoy <Frederic.Ternoy@onera.fr>
+Date:
+Tue, 09 May 2006 13:23:01 +0200
+Pour:
+MALARD Laurent <laurent.malard@airbus.com>
+Copie:
+DESCHAMPS Marc <Marc.Deschamps@onera.fr>, BRET Jean-François <bret@onera.fr>
+
+Bonjour,
+
+Voici un résumé des échanges concernant le profil carbone pour essai acénaphténe :
+
+La pièce de référence a été fabriquée à partir de NCHR 913/35%/132/HTA7 : matrice 913 et renfort HTA7
+Le composite que DERM propose est le T2H132/EH25/34% : matrice EH25 et renfort T2H
+
+Le hasard fait que HTA7 et T2H correspondent en réalité à la même fibre HTA5131-800 (information HEXCEL)
+Les 2 nappes ne diffèrent donc que par le type et le taux massique de résine (913/35% et EH25/34%).
+
+Ci-joint les fiches techniques de ces 3 éléments (1 fibre + 2 résines).
+
+Cordialement,
+
+-- 
+Frédéric TERNOY
+ONERA/DRIM/DERM
+
+tel : +33 (0)3 20 49 69 64
+fax : +33 (0)3 20 49 69 98
+
+Email : frederic.ternoy@onera.fr 
