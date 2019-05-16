@@ -38,9 +38,9 @@ k_max = 4; % Rapport maximum
 m_v = 205; % Masse du vehicule (kg)
 h_g_v = 0.31; % Hauteur du centre de gravite de la voiture (m)
 emp = 1.575; % Empattement (m)
-rep = 0.57; % Masse sur l'essieu arrière en statique (%)
+rep = 0.; % Masse sur l'essieu arrière en statique (%)
 D_roue = 0.52; % Diametre exterieur de la roue (m)
-J_rot = 0.8; % Inertie equivalente des masses en rotation (kg.m²)
+J_rot = 0.9; % Inertie equivalente des masses en rotation (kg.m²)
 
 % Pneumatiques
 % Pas de glissement
