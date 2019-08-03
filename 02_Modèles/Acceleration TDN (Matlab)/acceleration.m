@@ -28,17 +28,17 @@
 
 % Epreuve et pilotage
 D_tot = 75; % Longueur de la piste (m)
-r_pat = 10500; % Regime de patinage de l'embrayage (tr/min)
-m_p = 50; % Masse du pilote (kg)
+r_pat = 9000; % Regime de patinage de l'embrayage (tr/min)
+m_p = 55; % Masse du pilote (kg)
 h_g_p = 0.42; % Hauteur du centre de gravite du pilote (m)
 k = 1; % Rapport engage au depart
-k_max = 4; % Rapport maximum
+k_max = 3; % Rapport maximum
 
 % Base roulante
-m_v = 205; % Masse du vehicule (kg)
+m_v = 218; % Masse du vehicule (kg)
 h_g_v = 0.31; % Hauteur du centre de gravite de la voiture (m)
 emp = 1.575; % Empattement (m)
-rep = 0.57; % Masse sur l'essieu arrière en statique (%)
+rep = 0.53; % Masse sur l'essieu arrière en statique (%)
 D_roue = 0.52; % Diametre exterieur de la roue (m)
 Jjp = 0.313; %Inertie de la roue et du pneu (CATIA)
 Jm = 0.005; %Inertie du moyeu et du freinage (CATIA)
@@ -77,7 +77,7 @@ coeff_roul = 0.01; % Coefficient de resistance au roulement du pneu
 % Mesure Optimus à Chambéry le 1/05/19
 
 rmot = 1.0e+04 *[ 0 0.5038    0.5127    0.5214    0.5289    0.5348    0.5411    0.5490    0.5565    0.5620    0.5664    0.5707    0.5761    0.5784    0.5861    0.5936    0.5995    0.6066    0.6152    0.6227    0.6283    0.6334    0.6397    0.6476    0.6562    0.6635    0.6736    0.6823    0.6911    0.6971    0.7059    0.7146    0.7233    0.7319    0.7406    0.7493    0.7580    0.7666    0.7753    0.7840    0.7926    0.8013    0.8100    0.8187    0.8273    0.8360    0.8447    0.8534    0.8620    0.8707    0.8794    0.8881    0.8967    0.9054    0.9141    0.9227    0.9314    0.9401    0.9488    0.9574    0.9661    0.9748    0.9835    0.9921    1.0008    1.0095    1.0182    1.0268    1.0355    1.0442    1.0528    1.0615    1.0702    1.0789    1.0875    1.0962    1.1049    1.1136    1.1222    1.1309    1.1396    1.1482    1.1569    1.1656    1.1743    1.1829    1.1916    1.2003    1.2090    1.2176    1.2263    1.2350    1.2437    1.2523    1.2610    1.2697    1.2783    1.2870    1.2957    1.3040    1.3123    1.3209    1.3276    1.3312    1.3328    1.3343    1.3356    1.3367];
-cmot = [ 0 38.5487   38.6362   38.6097   38.0906   37.3282   36.4654   35.8732   36.2616   37.0797   37.8877   38.7200   39.6658   39.6542   39.8572   39.2645   38.4332   37.5575   37.3589   38.0997   38.9081   39.7279   40.5804   41.3131   41.6142   41.4875   41.0424   41.0292   41.3002   41.8163   41.8127   42.3240   42.7966   43.3348   43.9635   44.6253   45.3373   46.0912   46.8026   47.4644   48.0412   48.4537   48.7615   48.9302   48.9964   48.9964   48.9534   48.8640   48.7416   48.7052   48.7052   48.7019   48.6291   48.5558   48.3909   48.1592   47.8813   47.5934   47.3188   47.1269   46.9151   46.6835   46.4419   46.1673   45.9522   45.7801   45.6026   45.5187   45.3731   45.1978   45.0125   44.8487   44.5790   44.3771   44.2514   44.1422   44.0032   43.8742   43.7385   43.5367   43.3348   43.0867   42.8021   42.4845   42.1668   41.8558   41.6837   41.4455   41.1410   40.8333   40.4660   40.1164   39.8048   39.4094   38.9671   38.4112   37.8057   37.3126   36.8229   36.1515   35.3504   34.7433   34.1138   33.2118   32.1896   30.9248   29.6618   28.5286];
+cmot = 0.1*[ 0 38.5487   38.6362   38.6097   38.0906   37.3282   36.4654   35.8732   36.2616   37.0797   37.8877   38.7200   39.6658   39.6542   39.8572   39.2645   38.4332   37.5575   37.3589   38.0997   38.9081   39.7279   40.5804   41.3131   41.6142   41.4875   41.0424   41.0292   41.3002   41.8163   41.8127   42.3240   42.7966   43.3348   43.9635   44.6253   45.3373   46.0912   46.8026   47.4644   48.0412   48.4537   48.7615   48.9302   48.9964   48.9964   48.9534   48.8640   48.7416   48.7052   48.7052   48.7019   48.6291   48.5558   48.3909   48.1592   47.8813   47.5934   47.3188   47.1269   46.9151   46.6835   46.4419   46.1673   45.9522   45.7801   45.6026   45.5187   45.3731   45.1978   45.0125   44.8487   44.5790   44.3771   44.2514   44.1422   44.0032   43.8742   43.7385   43.5367   43.3348   43.0867   42.8021   42.4845   42.1668   41.8558   41.6837   41.4455   41.1410   40.8333   40.4660   40.1164   39.8048   39.4094   38.9671   38.4112   37.8057   37.3126   36.8229   36.1515   35.3504   34.7433   34.1138   33.2118   32.1896   30.9248   29.6618   28.5286];
 
 % % 
 r_rupteur = 13500; % Regime de rupteur (tr/min)
@@ -106,6 +106,7 @@ k_f = 1/3.2; % Rapport final
 
 pertes = 0.9; % Coefficient de pertes de couple dans la transmission
 
+rpm_shift = [13300       13100       12900       12800       12700];
 %% 
 
 % Vitesses (m/s)
@@ -241,45 +242,50 @@ while d < D_tot
     r = v/(k_p*K(k)*k_f*D_roue*3.14/60); % Calcul du regime moteur
     
     % Changement de rapport
-    
-    % Changement au rupteur
-    
-    if r > r_rupteur && u >n && k<6 && k<k_max
-        k = k+1;
-        u=0;
-        R_pas = [R_pas, r_rupteur];
-        T_pas = [T_pas, t];
-               
-    % Changement de rapport pour optimiser le couple
-    elseif k<k_max && u >n
-     
-        % Determination du regime le plus proche dans les points de fonctionnement connus
-        r_dif = max(rmot);
-        for i = 1:size(rmot,2)
-           if abs(rmot(i)-r)<r_dif
-               r_dif = abs(rmot(i)-r);
-               j_k=i;
-           end
-        end
-        c_k = couple(j_k,k); % Couple a la roue au rapport engage
-
-        r_sup = v/(k_p*K(k+1)*k_f*D_roue*3.14/60); % Calcul du regime moteur au rapport superieur
-        r_dif = max(rmot);
-        for i = 1:size(rmot,2)
-           if abs(rmot(i)-r_sup)<r_dif
-               r_dif = abs(rmot(i)-r_sup);
-               j_ksup=i;
-           end
-        end
-        c_ksup = couple(j_ksup,k+1); % couple a la roue au rapport superieur
-        
-        if c_ksup > c_k && k<6 % Condition de changement de rapport
-        k = k+1;
-        u=0;
-        R_pas = [R_pas, r];
-        T_pas = [T_pas, t];
-        end
+%Forcage du couple à certain RPM
+    if r>= rpm_shift(k);
+        k=k+1;
     end
+    
+% Optimisation du couple
+%     Changement au rupteur
+%     
+%     if r > r_rupteur && u >n && k<6 && k<k_max
+%         k = k+1;
+%         u=0;
+%         R_pas = [R_pas, r_rupteur];
+%         T_pas = [T_pas, t];
+%                
+%     Changement de rapport pour optimiser le couple
+%     elseif k<k_max && u >n
+%      
+%         Determination du regime le plus proche dans les points de fonctionnement connus
+%         r_dif = max(rmot);
+%         for i = 1:size(rmot,2)
+%            if abs(rmot(i)-r)<r_dif
+%                r_dif = abs(rmot(i)-r);
+%                j_k=i;
+%            end
+%         end
+%         c_k = couple(j_k,k); % Couple a la roue au rapport engage
+% 
+%         r_sup = v/(k_p*K(k+1)*k_f*D_roue*3.14/60); % Calcul du regime moteur au rapport superieur
+%         r_dif = max(rmot);
+%         for i = 1:size(rmot,2)
+%            if abs(rmot(i)-r_sup)<r_dif
+%                r_dif = abs(rmot(i)-r_sup);
+%                j_ksup=i;
+%            end
+%         end
+%         c_ksup = couple(j_ksup,k+1); % couple a la roue au rapport superieur
+%         
+%         if c_ksup > c_k && k<6 % Condition de changement de rapport
+%             k = k+1;
+%             u=0;
+%             R_pas = [R_pas, r];
+%             T_pas = [T_pas, t];
+%         end
+%     end
     u = u+1;                      
 end
 
@@ -324,121 +330,121 @@ disp('---------------------------------------------------------')
 % 
 % 
 % 
-% %% Courbes en fonction du temps
-%  
-% figure('Name','Résultats en fonction du temps')
-% subplot(311),plot(T,R);
-% xlabel('Temps');
-% xlim([0 t]);
-% ylim([6000 13000]);
-% ylabel('Regime moteur (tr/min)');
-% subplot(312),plot(T,A);
-% xlabel('Temps');
-% xlim([0 t]);
-% ylim([0 max(A)+0.2]);
-% ylabel('Acceleration (g)');
-% subplot(313),plot(T,V*3.6);
-% xlabel('Temps');
-% xlim([0 t]);
-% ylim([0 120]);
-% ylabel('Vitesse (km/h)');
-%  
-% figure('Name','Résultats en fonction du temps')
-% subplot(211),[jAx,jLine1,jLine2] = plotyy(T,R,T,C);
-% xlabel('Temps (s)');
-% set(jAx,'xlim',[0 t],'xtick',0:0.5:t);
-% set(jAx(1),'ytick',6000:2000:14000);
-% set(jAx(1),'ylim',[6000 14000],'yticklabel',num2str(get(jAx(1),'YTick')','%d'));
-% set(jAx(2),'ylim',[0 120],'ytick',0:20:120);
-% ylabel(jAx(1),'Regime moteur (tr/min)');
-% ylabel(jAx(2),'Couple aux roues (m.kg)');
-% subplot(212),[hAx,hLine1,hLine2] = plotyy(T,Ke,T,E);
-% xlabel('Temps (s)');
-% set(hAx,'xlim',[0 t],'xtick',0:0.5:t);
-% set(hAx(1),'ylim',[0 max(Ke)+1],'ytick',0:1:5);
-% ylabel(hAx(1), 'Rapport engage');
-% set(hAx(2),'ylim',[0 2],'ytick',0:1:1);
-% ylabel(hAx(2), 'Embrayage');
-%  
-% figure('Name','Résultats en fonction du temps')
-% subplot(211),[gAx,gLine1,gLine2] = plotyy(T,A,T,Adh);
-% xlabel('Temps');
-% set(gAx,'xlim',[0 t],'xtick',0:0.5:t);
-% set(gAx(1),'ylim',[0 1.5],'ytick',0:0.2:1.5);
-% ylabel(gAx(1),'Acceleration (g)');
-% set(gAx(2),'ylim',[0 2],'ytick',0:1:1);
-% ylabel(gAx(2), 'Risque de patinage des pneus');
-% subplot(212),[hAx,hLine1,hLine2] = plotyy(T,Ch_ar,T,m*g-Ch_ar);
-% xlabel('Temps(s)');
-% set(hAx,'xlim',[0 t],'xtick',0:0.5:t)
-% set(hAx(1),'ylim',[min(m*g-Ch_ar)-100 max(Ch_ar)+100])
-% ylabel(hAx(1),'Charge sur les pneus arriere (N)');
-% set(hAx(2),'ylim',[min(m*g-Ch_ar)-100 max(Ch_ar)+100])
-% ylabel(hAx(2),'Charge sur les pneus avant (N)');
-% 
-%  
-% figure('Name','Résultats en fonction de la distance')
-% subplot(311),plot(D,R);
-% xlabel('Distance');
-% xlim([0 D_tot]);
-% ylim([6000 13000]);
-% ylabel('Regime moteur (tr/min)');
-% subplot(312),plot(D,A);
-% xlabel('Distance');
-% xlim([0 D_tot]);
-% ylim([0 1.5]);
-% ylabel('Acceleration (g)');
-% subplot(313),plot(D,V*3.6);
-% xlabel('Distance');
-% xlim([0 D_tot]);
-% % ylim([0 120]);
-% ylabel('Vitesse (km/h)');
-%  
-% figure('Name','Résultats en fonction de la distance')
-% subplot(211),[jAx,jLine1,jLine2] = plotyy(D,R,D,C);
-% xlabel('Temps (s)');
-% set(jAx,'xlim',[0 D_tot],'xtick',0:5:D_tot);
-% set(jAx(1),'ytick',6000:2000:14000);
-% set(jAx(1),'ylim',[6000 14000],'yticklabel',num2str(get(jAx(1),'YTick')','%d'));
-% set(jAx(2),'ylim',[0 120],'ytick',0:20:120);
-% ylabel(jAx(1),'Regime moteur (tr/min)');
-% ylabel(jAx(2),'Couple aux roues (m.kg)');
-% subplot(212),[hAx,hLine1,hLine2] = plotyy(D,Ke,D,E);
-% xlabel('Distance (m)');
-% set(hAx,'xlim',[0 D_tot],'xtick',0:5:D_tot);
-% set(hAx(1),'ylim',[0 max(Ke)+1],'ytick',0:1:5);
-% ylabel(hAx(1), 'Rapport engage');
-% set(hAx(2),'ylim',[0 2],'ytick',0:1:1);
-% ylabel(hAx(2), 'Embrayage');
-%  
-% figure('Name','Résultats en fonction de la distance')
-% subplot(211),[gAx,gLine1,gLine2] = plotyy(D,A,D,Adh);
-% xlabel('Distance (m)');
-% set(gAx,'xlim',[0 D_tot],'xtick',0:5:D_tot);
-% set(gAx(1),'ylim',[0 1.5],'ytick',0:0.2:1.5);
-% ylabel(gAx(1),'Acceleration (g)');
-% set(gAx(2),'ylim',[0 2],'ytick',0:1:1);
-% ylabel(gAx(2), 'Risque de patinage des pneus');
-% subplot(212),[hAx,hLine1,hLine2] = plotyy(D,Ch_ar,D,m*g-Ch_ar);
-% xlabel('Distance (m)');
-% set(hAx,'xlim',[0 D_tot],'xtick',0:5:D_tot)
-% set(hAx(1),'ylim',[min(m*g-Ch_ar)-100 max(Ch_ar)+100])
-% ylabel(hAx(1),'Charge sur les pneus arriere (N)');
-% set(hAx(2),'ylim',[min(m*g-Ch_ar)-100 max(Ch_ar)+100])
-% ylabel(hAx(2),'Charge sur les pneus avant (N)');
-% 
-% % Couple a la roue
-% 
-% for i=1:6
-%     eval(['C_roue_' num2str(i) '= cmot/(k_p*K(i)*k_f);']);
-%     eval(['V_roue_' num2str(i) '= 3.6*0.265*6.28*rmot*k_p*K(i)*k_f/60;']);
-% end
-% 
-% set(0,'defaultlinelinewidth',2)
-% plot(V_roue_1,C_roue_1,V_roue_2,C_roue_2,V_roue_3,C_roue_3,V_roue_4,C_roue_4,V_roue_5,C_roue_5,V_roue_6,C_roue_6);
-% grid on
-% title('Couple à la roue');
-% xlabel('Vitesse (km/h)');
-% ylabel('Couple à la roue (Nm)');
-% legend('1er rapport', '2ème rapport', '3ème rapport', '4éme rapport', '5ème rapport', '6ème rapport');
-% 
+%% Courbes en fonction du temps
+ 
+figure('Name','Résultats en fonction du temps')
+subplot(311),plot(T,R);
+xlabel('Temps');
+xlim([0 t]);
+ylim([6000 13000]);
+ylabel('Regime moteur (tr/min)');
+subplot(312),plot(T,A);
+xlabel('Temps');
+xlim([0 t]);
+ylim([0 max(A)+0.2]);
+ylabel('Acceleration (g)');
+subplot(313),plot(T,V*3.6);
+xlabel('Temps');
+xlim([0 t]);
+ylim([0 120]);
+ylabel('Vitesse (km/h)');
+ 
+figure('Name','Résultats en fonction du temps')
+subplot(211),[jAx,jLine1,jLine2] = plotyy(T,R,T,C);
+xlabel('Temps (s)');
+set(jAx,'xlim',[0 t],'xtick',0:0.5:t);
+set(jAx(1),'ytick',6000:2000:14000);
+set(jAx(1),'ylim',[6000 14000],'yticklabel',num2str(get(jAx(1),'YTick')','%d'));
+set(jAx(2),'ylim',[0 120],'ytick',0:20:120);
+ylabel(jAx(1),'Regime moteur (tr/min)');
+ylabel(jAx(2),'Couple aux roues (m.kg)');
+subplot(212),[hAx,hLine1,hLine2] = plotyy(T,Ke,T,E);
+xlabel('Temps (s)');
+set(hAx,'xlim',[0 t],'xtick',0:0.5:t);
+set(hAx(1),'ylim',[0 max(Ke)+1],'ytick',0:1:5);
+ylabel(hAx(1), 'Rapport engage');
+set(hAx(2),'ylim',[0 2],'ytick',0:1:1);
+ylabel(hAx(2), 'Embrayage');
+ 
+figure('Name','Résultats en fonction du temps')
+subplot(211),[gAx,gLine1,gLine2] = plotyy(T,A,T,Adh);
+xlabel('Temps');
+set(gAx,'xlim',[0 t],'xtick',0:0.5:t);
+set(gAx(1),'ylim',[0 1.5],'ytick',0:0.2:1.5);
+ylabel(gAx(1),'Acceleration (g)');
+set(gAx(2),'ylim',[0 2],'ytick',0:1:1);
+ylabel(gAx(2), 'Risque de patinage des pneus');
+subplot(212),[hAx,hLine1,hLine2] = plotyy(T,Ch_ar,T,m*g-Ch_ar);
+xlabel('Temps(s)');
+set(hAx,'xlim',[0 t],'xtick',0:0.5:t)
+set(hAx(1),'ylim',[min(m*g-Ch_ar)-100 max(Ch_ar)+100])
+ylabel(hAx(1),'Charge sur les pneus arriere (N)');
+set(hAx(2),'ylim',[min(m*g-Ch_ar)-100 max(Ch_ar)+100])
+ylabel(hAx(2),'Charge sur les pneus avant (N)');
+
+ 
+figure('Name','Résultats en fonction de la distance')
+subplot(311),plot(D,R);
+xlabel('Distance');
+xlim([0 D_tot]);
+ylim([6000 13000]);
+ylabel('Regime moteur (tr/min)');
+subplot(312),plot(D,A);
+xlabel('Distance');
+xlim([0 D_tot]);
+ylim([0 1.5]);
+ylabel('Acceleration (g)');
+subplot(313),plot(D,V*3.6);
+xlabel('Distance');
+xlim([0 D_tot]);
+ylim([0 120]);
+ylabel('Vitesse (km/h)');
+ 
+figure('Name','Résultats en fonction de la distance')
+subplot(211),[jAx,jLine1,jLine2] = plotyy(D,R,D,C);
+xlabel('Temps (s)');
+set(jAx,'xlim',[0 D_tot],'xtick',0:5:D_tot);
+set(jAx(1),'ytick',6000:2000:14000);
+set(jAx(1),'ylim',[6000 14000],'yticklabel',num2str(get(jAx(1),'YTick')','%d'));
+set(jAx(2),'ylim',[0 120],'ytick',0:20:120);
+ylabel(jAx(1),'Regime moteur (tr/min)');
+ylabel(jAx(2),'Couple aux roues (m.kg)');
+subplot(212),[hAx,hLine1,hLine2] = plotyy(D,Ke,D,E);
+xlabel('Distance (m)');
+set(hAx,'xlim',[0 D_tot],'xtick',0:5:D_tot);
+set(hAx(1),'ylim',[0 max(Ke)+1],'ytick',0:1:5);
+ylabel(hAx(1), 'Rapport engage');
+set(hAx(2),'ylim',[0 2],'ytick',0:1:1);
+ylabel(hAx(2), 'Embrayage');
+ 
+figure('Name','Résultats en fonction de la distance')
+subplot(211),[gAx,gLine1,gLine2] = plotyy(D,A,D,Adh);
+xlabel('Distance (m)');
+set(gAx,'xlim',[0 D_tot],'xtick',0:5:D_tot);
+set(gAx(1),'ylim',[0 1.5],'ytick',0:0.2:1.5);
+ylabel(gAx(1),'Acceleration (g)');
+set(gAx(2),'ylim',[0 2],'ytick',0:1:1);
+ylabel(gAx(2), 'Risque de patinage des pneus');
+subplot(212),[hAx,hLine1,hLine2] = plotyy(D,Ch_ar,D,m*g-Ch_ar);
+xlabel('Distance (m)');
+set(hAx,'xlim',[0 D_tot],'xtick',0:5:D_tot)
+set(hAx(1),'ylim',[min(m*g-Ch_ar)-100 max(Ch_ar)+100])
+ylabel(hAx(1),'Charge sur les pneus arriere (N)');
+set(hAx(2),'ylim',[min(m*g-Ch_ar)-100 max(Ch_ar)+100])
+ylabel(hAx(2),'Charge sur les pneus avant (N)');
+
+Couple a la roue
+
+for i=1:6
+    eval(['C_roue_' num2str(i) '= cmot/(k_p*K(i)*k_f);']);
+    eval(['V_roue_' num2str(i) '= 3.6*0.265*6.28*rmot*k_p*K(i)*k_f/60;']);
+end
+
+set(0,'defaultlinelinewidth',2)
+plot(V_roue_1,C_roue_1,V_roue_2,C_roue_2,V_roue_3,C_roue_3,V_roue_4,C_roue_4,V_roue_5,C_roue_5,V_roue_6,C_roue_6);
+grid on
+title('Couple à la roue');
+xlabel('Vitesse (km/h)');
+ylabel('Couple à la roue (Nm)');
+legend('1er rapport', '2ème rapport', '3ème rapport', '4éme rapport', '5ème rapport', '6ème rapport');
+
