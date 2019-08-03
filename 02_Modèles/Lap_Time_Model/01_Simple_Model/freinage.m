@@ -1,4 +1,5 @@
-% Modèle de freinage pour modèle de temps au tour,
+% Modèle de freinage simpliste pour modèle de temps au tour,
+% voir la page 16 du cour de dynamique véhicul de l'epsac
 % Input :   - Paramètres de la voiture
 %           - Vitesse de départ et vitesse de fin
 
@@ -6,7 +7,6 @@
 
 %Hypothèses :   - coeff longi des pneus constant 
 %               - pneus toujours en limite de glissement
-%               - Transfert de charge instantanée
 
 %% Paramètres :
 % Véhicule 
@@ -16,15 +16,15 @@ mt = mv + mp; % Masse totale en kg
 h = 300; % Hauteur du CdG en mm 
 e = 1635; % Empattement en mm 
 %aéro
-Cx = 0; %Coefficient de trainé
-Cz = 0; %Coefficient de déportance 
+Cx = 0.5; %Coefficient de trainé
+Cz = 0.5; %Coefficient de déportance 
 S = 1.2; %Surface d'application de l'aéro en m²
 rho = 1.2; %masse volumique de l'air
 
 % Autres 
 g = 9.81; % Accélération de la pesanteur en m/s2 
 mu = 1.2; % Coefficient longitudinal des pneus 
-Vi = 50; %vitesse du véhicule avant freinage en km/h
+Vi = 100; %vitesse du véhicule avant freinage en km/h
 Vo = 0; %vitesse du véhicule après freiange en km/h
 % paramètre algo
 pas = 0.01; % pas de calcul en s

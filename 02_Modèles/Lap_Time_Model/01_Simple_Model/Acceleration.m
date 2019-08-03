@@ -1,30 +1,26 @@
 function [t] = Acceleration(D_tot)
 %%% Acceleration
-
 %% Hypotheses
 
     % Le pneu est indeformable
-    % Le coeff de r?sistance au roulement est constant
+    % Le coeff de résistance au roulement est constant
     % La voiture n'a pas de suspensions
-    % Le transfert de charge est instantane
+    % Le transfert de charge est instantané
     % Les pertes dans la transmission sont proportionnelles au couple
-    % Le temps de passage de rapport ne depend pas des rapports concernes
+    % Le temps de passage de rapport ne depend pas des rapports concernés
     % Les rapport passent sans debrayer
-    % L'aerodynamique (appui et trainee) est neglige
+    % L'aerodynamique (appui et trainée) est negligé 
 
-%%
-% clear all
-% close all
+
 
 %% Parametres
 
-% Epreuve et pilotage
-%D_tot = 75; % Longueur de la piste (m)
+% Véhicule
 r_pat = 10500; % Regime de patinage de l'embrayage (tr/min)
 m_p = 50; % Masse du pilote (kg)
 h_g_p = 0.42; % Hauteur du centre de gravite du pilote (m)
-k = 1; % Rapport engage au depart
-k_max = 4; % Rapport maximum
+k = 1; % Rapport engagé au depart
+k_max = 3; % Rapport maximum
 
 % Base roulante
 m_v = 205; % Masse du vehicule (kg)
@@ -274,20 +270,5 @@ while d < D_tot
     end
     u = u+1;                      
 end
-
-%% Principaux resultats
-
-% disp('Temps (s) :')
-% disp(t)
-% disp('Vitesse max (km/h) :')
-% disp(max(V)*3.6)
-% disp('Acceleration max (g) :')
-% disp(max(A))
-% disp('Regimes de passage de rapport (tr/min) :')
-% disp(round(R_pas))
-% if max(Ch_ar) == m*g
-%     disp('Wheeliiiinnngg ! :p')
-% end
-% disp('---------------------------------------------------------')
 
 end
