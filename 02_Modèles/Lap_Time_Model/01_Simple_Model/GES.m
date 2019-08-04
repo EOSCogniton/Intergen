@@ -19,11 +19,12 @@ load Optimus+aero
 %___track___
 Track_file = 'FSN2019';
 %___Algo___
-step = 0.01;
+step = 1;
 
 %% Alogrithm
 
 Vi = 100;
 Vo = 0;
 Braking
+Skidpad_aero
 disp(d(end))
