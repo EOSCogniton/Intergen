@@ -1,12 +1,12 @@
 %Global Plot Test 
 
-begin_point = [0 0] ; 
+Start_point = [1 0] ; 
 direction = [1 0] ;
 distance = 20 ;
 angle = 60 ; 
 radius = 4 ;
 
-[final_point] = plot_accel(direction,distance,begin_point)
+[final_point] = plot_accel(direction,distance,Start_point)
 
 hold on
 
