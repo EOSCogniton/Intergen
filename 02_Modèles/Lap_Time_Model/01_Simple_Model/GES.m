@@ -27,7 +27,7 @@ step = 0.01;
 
 %__Test Braking__
 
-% Vi = 100;
+% D_brake =30;
 % Vo = 0;
 % Braking
 % plot(t,V_braking)
@@ -41,11 +41,26 @@ step = 0.01;
 % disp(V_turn(1))
 
 %__Test Accel (75m départ arreté)__
-D_acc = 75;
-Vi =0;
-Accel
-plot(T,V_acc*3.6)
-disp(T(end))
-disp(V_acc(end)*3.6)
+% D_acc = 75;
+% Vi =0;
+% Accel
+% plot(T,V_acc*3.6)
+% disp(T(end))
+% disp(V_acc(end)*3.6)
+
+%__Test Forward_Backward__
+Vi = 0;
+Vo = 0;
+D_tot = 100;
+Forward_backward
+plot(d_FB,V_FB,'DisplayName','Vitesse optimale','LineWidth',2,'Color','b')
+hold on
+plot(d_acc,V_acc,'--r','DisplayName','Vitesse pour une accélération seule')
+plot(d_brake,V_brake,'--g','DisplayName','Vitesse pour un freinage seul')
+xlabel('Distance (m)')
+xlim([0, D_tot]);
+ylabel('Vitesse(km/h)')
+title('Méthode Forward Backward')
+legend()
 
 
