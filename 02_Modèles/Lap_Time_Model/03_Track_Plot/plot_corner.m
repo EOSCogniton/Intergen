@@ -6,12 +6,15 @@ function [final_point,final_direction] = plot_corner(direction,angle,radius,begi
         style='b*';
     end
     
-    NOP = 10 ; %nombre de  points
+    NOP = 30 ; %nombre de  points
     
     %On initialise les abscisses et ordonnées au point de départ
 %     absc = [begin_point(1)] ;
 %     ord = [begin_point(2)] ;
     center = begin_point + ortho(direction)*radius;
+    if angle<0
+        center = begin_point - ortho(direction)*radius;
+    end
     %Option_1 
 %     THETA=linspace(0,deg2rad(angle),NOP) ;
 %     RHO=ones(1,NOP)*radius ; 
