@@ -3,24 +3,42 @@ function [final_point,final_direction] = plot_corner(direction,angle,radius,begi
     if (nargin <4), %renvoie une erreur si il manque des arguments
      error('Please see help for INPUT DATA.');
     elseif (nargin==4) %Compléte le dernière argument si il est manquant
-        style='b-';
+        style='b*';
     end;
     
     NOP = 5 ; %nombre de  points
     
     %On initialise les abscisses et ordonnées au point de départ
-    abs = [begin_point(1)] ;
+    absc = [begin_point(1)] ;
     ord = [begin_point(2)] ;
-    center = ortho(direction)*radius ; 
-    THETA=linspace(0,deg2rad(angle),NOP);
-    RHO=ones(1,NOP)*radius;
-    [abs,ord] = pol2cart(THETA,RHO);
-    abs=abs+center(1);
-    ord=ord+center(2);
-    H=plot(abs,ord,style);
+    center = ortho(direction)*radius ;
+    %Option_1 
+%     THETA=linspace(0,deg2rad(angle),NOP) ;
+%     RHO=ones(1,NOP)*radius ; 
+%     [abs,ord] = pol2cart(THETA,RHO) 
+%     %Angle entre les vecteurs directions
+%     final_direction = rotation(direction,angle)
+%     Rd = acosd(dot(direction,final_direction)/(norm(direction)*norm(final_direction)));
+%     %Rotation 
+%     for i = 1:length(abs)
+%         R = rotation([abs(i),ord(i)],-(Rd+angle)) 
+%         abs(i) = R(1)
+%         ord(i) = R(2)
+%     end
+    
+    %Option_2
+    absc = linspace(begin_point(1),center(1),10) ; 
+    for i = 1:length(absc)
+        ord = center(2) + sqrt(-(absc(i)-center(1))^2 + radius^2) ;
+    end
+
+    absc = absc + begin_point(1) ;
+    ord = ord + begin_point(2) ;
+    H=plot(absc,ord,style) ;
+    pause(.1);
     %axis square;
     
-    final_point = [abs(end) ord(end)] ;
-    final_direction = rotation(direction,angle) ; 
+    final_point = [absc(end) ord(end)] ;
+     
 
 end

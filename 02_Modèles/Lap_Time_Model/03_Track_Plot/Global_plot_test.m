@@ -2,7 +2,7 @@
 
 begin_point = [0 0] ; 
 direction = [1 0] ;
-distance = 75 ;
+distance = 20 ;
 angle = 60 ; 
 radius = 4 ;
 

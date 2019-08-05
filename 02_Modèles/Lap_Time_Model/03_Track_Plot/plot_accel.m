@@ -2,24 +2,27 @@ function [final_point] = plot_accel(direction, distance, begin_point,style)
 
     %Test le nombre d'argument
     if (nargin <3), %renvoie une erreur si il manque des arguments
-     error('Please see help for INPUT DATA.');
+        error('Please see help for INPUT DATA.');
     elseif (nargin==3) %Compléte le dernière argument si il est manquant
-        style='b-';
-    end;
+        style='b*';
+    end
     
-    NOP = 5 ; %nombre de  points
+    NOP = 50 ; %nombre de  points
     
     %On initialise les abscisses et ordonnées au point de départ
     abs = zeros(1,NOP) ;
     ord = zeros(1,NOP) ;
     abs(1) = begin_point(1) ;
     ord(1) = begin_point(2) ;
-    for i = 1:NOP
-        abs(i+1) = distance/NOP*i*direction(1) ;
-        ord(i+1) = distance/NOP*i*direction(2) ;
+    for i = 1:NOP-1
+        abs(i+1) = begin_point(1) + distance/NOP*i*direction(1) ;
+        ord(i+1) = begin_point(2) + distance/NOP*i*direction(2) ;
+        plot(abs,ord,style)
+        pause(.1);
+
     end
     
     final_point = [abs(end) ord(end)] ;
-    plot(abs,ord,style)
+    
     
 end
