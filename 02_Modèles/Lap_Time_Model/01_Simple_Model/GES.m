@@ -20,6 +20,7 @@ load Optimus+aero
 xr = 1- xf;
 %___track___
 Track_file = 'FSN2019';
+track = [[ 50 0 50 0];[0 180 0 180];[0 10 0 10]];
 %___Algo___
 step = 0.01;
 
@@ -49,18 +50,77 @@ step = 0.01;
 % disp(V_acc(end)*3.6)
 
 %__Test Forward_Backward__
-Vi = 0;
-Vo = 0;
-D_tot = 100;
-Forward_backward
-plot(d_FB,V_FB,'DisplayName','Vitesse optimale','LineWidth',2,'Color','b')
-hold on
-plot(d_acc,V_acc,'--r','DisplayName','Vitesse pour une accélération seule')
-plot(d_brake,V_brake,'--g','DisplayName','Vitesse pour un freinage seul')
-xlabel('Distance (m)')
-xlim([0, D_tot]);
-ylabel('Vitesse(km/h)')
-title('Méthode Forward Backward')
-legend()
+% Vi = 0;
+% Vo = 0;
+% D_tot = 100;
+% Forward_backward
+% plot(d_FB,V_FB,'DisplayName','Vitesse optimale','LineWidth',2,'Color','b')
+% hold on
+% plot(d_acc,V_acc,'--r','DisplayName','Vitesse pour une accélération seule')
+% plot(d_brake,V_brake,'--g','DisplayName','Vitesse pour un freinage seul')
+% xlabel('Distance (m)')
+% xlim([0, D_tot]);
+% ylabel('Vitesse(km/h)')
+% title('Méthode Forward Backward')
+% legend()
 
+%__Init__
+
+V = 0;
+d = 0;
+t = 0;
+%__track calculs__
+
+Plot_track
+
+%__Loop__
+
+for sector=1:length(track)
+    if (track(1,sector) == 0)
+        A_turn = track(2,sector);
+        R_turn = track(3,sector);
+        Turn
+        V = [V V_turn];
+        d = [d (d_turn+d(end))];
+        t = [t (t_turn+t(end))];
+    else
+        if sector < length(track)
+            A_turn = track(2,sector+1);
+            R_turn = track(3,sector+1);
+            Turn
+            Vo = V_turn(end);
+        else 
+            Vo = 300;
+        end
+        Vi = V(end); 
+        D_tot = track(1,sector);
+        Forward_backward
+        V = [V V_FB];
+        d = [d (d_FB+d(end))];
+        t = [t (t_FB+t(end))];
+    end
+end
+
+%__Results__
+disp(strcat('Final time :',num2str(t(end))))
+%plot(d,V)
+
+%Display speed on the track 
+track_plot(interp1(d_track,X,d)',interp1(d_track,Y,d)',V')
+
+%% Functions
+
+function [] = track_plot(X, Y, speed)
+% X et Y sont des coordonnées venant de lat_longi2X_Y
+% speed est en km/h
+
+z = zeros(size(X'));
+col = speed';  % This is the color, vary with x in this case.
+surface([X';X'],[Y';Y'],[z;z],[col;col],'facecol','no','edgecol','interp','linew',2);
+c = colorbar;
+xlabel('X (m)')
+ylabel('Y (m)')
+c.Label.String = 'Vitesse Km/h';
+
+end
 

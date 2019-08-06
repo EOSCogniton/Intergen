@@ -26,9 +26,9 @@
 
 %__Init__
 
-d = 0; % distance parcourue
+dsim = 0; % distance parcourue
 v = Vi/3.6; % vitesse du vehicule
-t = -step; % temps
+tsim = -step; % temps
 j = 0; % Numero du point de fonctionnement du moteur
 t_acc = [0]; % Temps
 V_acc = [v]; % Vitesse
@@ -59,9 +59,9 @@ c_roul = m_t*g*b; % Resistance au roulement (N.m)
 J_trans = m_t*D_wheel^2/4; % Inertie equivalente des masses en translation (kg.m²)
 J_eq = J_trans + J_rot; % Inertie totale (kg.m²)
 %% Simulation
-while d < D_acc
-    t = t+step;
-    t_acc = [t_acc t];
+while dsim < D_acc
+    tsim = tsim+step;
+    t_acc = [t_acc tsim];
     Ke = [Ke k]; % Memoire du rapport engage
     r = v/(k_p*K(k)*k_f*D_wheel*3.14/60); % Calcul du regime moteur
     % Prise en compte du patinage de l'embrayage
@@ -108,8 +108,8 @@ while d < D_acc
     end
     v = v + a*step; % Vitesse du vehicule
     V_acc = [V_acc v]; % Memoire de la vitesse
-    d = d + v*step; % Distance parcourue
-    d_acc = [d_acc, d]; % Memoire de la distance
+    dsim = dsim + v*step; % Distance parcourue
+    d_acc = [d_acc, dsim]; % Memoire de la distance
     r = v/(k_p*K(k)*k_f*D_wheel*3.14/60); % Calcul du regime moteur
     % Changement de rapport
     % Changement au rupteur

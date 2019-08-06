@@ -1,4 +1,4 @@
-function [final_point,final_direction] = plot_corner(direction,angle,radius,begin_point,style)
+function [final_point,final_direction,d,X,Y] = plot_corner(direction,angle,radius,begin_point,style)
     %Test le nombre d'argument
     if (nargin <4) %renvoie une erreur si il manque des arguments
      error('Please see help for INPUT DATA.');
@@ -44,13 +44,19 @@ function [final_point,final_direction] = plot_corner(direction,angle,radius,begi
 
     %Option 3
     
-    X = begin_point -  center;
+    Xdir = begin_point -  center;
+    d = 0;
+    X = [];
+    Y = [];
     for i=1:NOP
-        X = rotation(X,angle/NOP);
-        plot(X(1)+center(1),X(2)+center(2),style)
-        pause(0.1)
+        Xdir = rotation(Xdir,angle/NOP);
+%         plot(Xdir(1)+center(1),Xdir(2)+center(2),style)
+        d = [d radius*angle/NOP+d(end)];
+        X = [X Xdir(1)+center(1)];
+        Y = [X Xdir(2)+center(2)];
+%         pause(0.1)
     end
-    final_point = X+center;
+    final_point = Xdir+center;
     final_direction = rotation(direction,angle);    
     
 end

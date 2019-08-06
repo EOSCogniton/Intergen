@@ -10,7 +10,6 @@
     %Hypothesis :   - tire always at the slip limit
     %               - no suspensions (wtf ?)
  
-force(1)
 %% Algo
 
 % Le but du programme est de calculer l'accélération latérale amax à laquelle
@@ -27,8 +26,8 @@ force(1)
 %__Init__
 
 
-d = [0]; %distance parcouru en m
-t = [0]; % temps écoulé en s
+d_turn = 0; %distance parcouru en m
+t_turn = 0; % temps écoulé en s
 
 %__Calculs__
 
@@ -44,11 +43,11 @@ V_turn = sqrt(amax*R_turn);
 
 %Vector calcul
 angle = 0;
-while (angle < A_turn) && (t(end)<10)
-    d =[d d(end)+step*V_turn(end)];
+while (angle < A_turn) && (t_turn(end)<10)
+    d_turn =[d_turn d_turn(end)+step*V_turn(end)];
     V_turn = [V_turn V_turn(end)];
-    t = [t t(end)+step];
-    angle = rad2deg(d(end)/R_turn);
+    t_turn = [t_turn t_turn(end)+step];
+    angle = rad2deg(d_turn(end)/R_turn);
 end
 V_turn = V_turn*3.6; % speed conversion 
 
