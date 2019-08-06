@@ -26,6 +26,25 @@ step = 0.01;
 
 %% Alogrithm
 
+Filename = 'Comparaison_Model.xlsx' ; %Name of the Excel file for the comparison of the different concepts
+Sheet = 'Feuil1' ; %Name of the sheet
+Range = 'B1' ; %Range for the value
+
+Concept_Name = {'Test_2'} ;
+
+%Find the last row to add the new times
+[num, txt, raw] = xlsread(Filename) ;
+cellContent = 'cellToFindOnRow7';
+for i = 1:size(txt, 1)
+    if strcmp(txt{i, 1}, cellContent)
+        break
+    end
+end
+row = i ;
+%%%
+
+xlswrite(Filename,Concept_Name,Sheet,strcat('A',num2str(row))) ; %Write in Excel File
+
 %__Test Braking__
 
 % D_brake =30;
@@ -35,19 +54,25 @@ step = 0.01;
 
 %__Test Turn (skidpad)__
 % 
-% R_turn = 8.5;
-% A_turn = 360;
-% Turn
-% disp(t(end))
-% disp(V_turn(1))
+R_turn = 8.5;
+A_turn = 360;
+Turn
+disp(t_turn(end))
+disp(V_turn(1))
+
+xlswrite(Filename,t_turn(end),Sheet,strcat('G',num2str(row))) ; %Write in Excel File
+
 
 %__Test Accel (75m départ arreté)__
-% D_acc = 75;
-% Vi =0;
-% Accel
-% plot(T,V_acc*3.6)
-% disp(T(end))
-% disp(V_acc(end)*3.6)
+D_acc = 75;
+Vi =0;
+Accel
+plot(t_acc,V_acc*3.6)
+disp(t_acc(end))
+disp(V_acc(end)*3.6)
+
+xlswrite(Filename,t_acc(end),Sheet,strcat('I',num2str(row))) ; %Write in Excel File
+
 
 %__Test Forward_Backward__
 % Vi = 0;
@@ -101,9 +126,12 @@ for sector=1:length(track)
     end
 end
 
+
 %__Results__
 disp(strcat('Final time :',num2str(t(end))))
 %plot(d,V)
+
+xlswrite(Filename,t(end),Sheet,strcat('E',num2str(row))) ; %Write in Excel File
 
 %Display speed on the track 
 track_plot(interp1(d_track,X,d)',interp1(d_track,Y,d)',V')
