@@ -136,6 +136,9 @@ xlswrite(Filename,t(end),Sheet,strcat('E',num2str(row))) ; %Write in Excel File
 %Display speed on the track 
 track_plot(interp1(d_track,X,d)',interp1(d_track,Y,d)',V')
 
+%Open the Excel File
+winopen(Filename)
+
 %% Functions
 
 function [] = track_plot(X, Y, speed)
