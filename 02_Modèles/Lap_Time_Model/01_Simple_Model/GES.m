@@ -10,16 +10,16 @@
 %aerodynamic feature.
 
 %% Parameters
-clear all
+
 global xr W xf m_t g Tf Tr h Cz rho S R_turn Y_poly %global for turn model
 % ___physical___
 g = 9.81; %gravity constant
 rho = 1.18; %air density
 %___car___
-load Optimus+aero
+load Optimus_seule
 xr = 1- xf;
 %___track___
-load FSATA_Endurance_Track
+%load FSATA_Endurance_Track
 %___Algo___
 step = 0.01;
 
@@ -100,7 +100,6 @@ Plot_track
 %__Loop__
 
 for sector=1:length(track)
-    disp(sector)
     if (track(1,sector) == 0)
         A_turn = track(2,sector);
         R_turn = track(3,sector);
@@ -128,7 +127,8 @@ end
 
 
 %__Results__
-disp(strcat('Final time :',num2str(t(end))))
+disp("Temps au tour à l'endurance :")
+disp(t(end))
 %plot(d,V)
 
 xlswrite(Filename,t(end),Sheet,strcat('E',num2str(row))) ; %Write in Excel File

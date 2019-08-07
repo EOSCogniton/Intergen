@@ -32,13 +32,13 @@ t_turn = 0; % temps écoulé en s
 %__Calculs__
 
 % Searching for the maximal lateral acceleration for this turn : 
-options = optimset('Algorithm','Levenberg-Marquardt');
+options = optimset('Algorithm','Levenberg-Marquardt','Display','off');
 x1 = fsolve(@force,1.5,options) ;
 x2 = fsolve(@force_f,1.5,options) ;
 x3 = fsolve(@force_r,1.5,options) ;
-disp([x1 x2 x3])
+
 amax = min([abs(x1) abs(x2) abs(x3)]);
-disp(amax)
+
 %Calcul of the speed associated with this lateral acceleration
 V_turn = sqrt(amax*R_turn);
 
