@@ -89,12 +89,12 @@ end
 %___Aero___
 
 S= 1.14 ; %surface effective pour la déportance en m²
-Cz = 0; %coefficient de déportance
-Cx = 0; %coefficient de trainé
+Cz = 2.13; %coefficient de déportance
+Cx = 1; %coefficient de trainé
 Cz_rep = 0.5; %répartition de la déportance sur l'essieu arrière
 %% Save of the workspace
 
-save('Optimus_seule')
+save('Optimus+aero')
 
 %% Functions
 

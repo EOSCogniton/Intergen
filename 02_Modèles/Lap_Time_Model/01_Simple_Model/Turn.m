@@ -35,15 +35,17 @@ t_turn = 0; % temps écoulé en s
 options = optimset('Algorithm','Levenberg-Marquardt');
 x1 = fsolve(@force,1.5,options) ;
 x2 = fsolve(@force_f,1.5,options) ;
-x3 = fsolve(@force_r,1,options) ;
-
-amax = min([x1 x2 x3]);
+x3 = fsolve(@force_r,1.5,options) ;
+disp([x1 x2 x3])
+amax = min([abs(x1) abs(x2) abs(x3)]);
+disp(amax)
 %Calcul of the speed associated with this lateral acceleration
 V_turn = sqrt(amax*R_turn);
 
+
 %Vector calcul
 angle = 0;
-while (angle < A_turn) && (t_turn(end)<10)
+while (angle < abs(A_turn)) && (t_turn(end)<10)
     d_turn =[d_turn d_turn(end)+step*V_turn(end)];
     V_turn = [V_turn V_turn(end)];
     t_turn = [t_turn t_turn(end)+step];

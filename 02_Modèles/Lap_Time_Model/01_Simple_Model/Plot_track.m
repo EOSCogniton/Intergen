@@ -10,7 +10,7 @@ d_track = [0];
 X = 0;
 Y = 0;
 Start_point = [0 0] ; 
-direction = [1 0] ;
+direction = [0 1] ;
 
 %_Loop_
 for sector=1:length(track)
@@ -20,16 +20,16 @@ for sector=1:length(track)
         Y = [Y Y_turn];
         d_track = [d_track (d_turn+d_track(end))];
     else
-        [Start_point,d_s,X_s,Y_s] = plot_accel(direction,track(1,sector),Start_point);
-        X = [X X_s];
-        Y = [Y Y_s];
+        [Start_point,d_s] = plot_accel(direction,track(1,sector),Start_point);
+        X = [X Start_point(1)];
+        Y = [Y Start_point(2)];
         d_track = [d_track (d_s+d_track(end))];
     end
 end
 
 %% Functions
 
-function [final_point,d,X,Y] = plot_accel(direction, distance, begin_point)
+function [final_point,d] = plot_accel(direction, distance, begin_point)
 
     NOP = 10 ; %nombre de  points
     
@@ -42,9 +42,7 @@ function [final_point,d,X,Y] = plot_accel(direction, distance, begin_point)
         abs(i+1) = begin_point(1) + distance/NOP*i*direction(1) ;
         ord(i+1) = begin_point(2) + distance/NOP*i*direction(2) ;
     end
-    d = [distance];
-    X = [abs(end)];
-    Y = [ord(end)];
+    d = distance;
     final_point = [abs(end) ord(end)] ;  
 end
 
@@ -62,7 +60,7 @@ function [final_point,final_direction,d,X,Y] = plot_corner(direction,angle,radiu
     Y = [];
     for i=1:NOP
         Xdir = rotation(Xdir,angle/NOP);
-        d = [d radius*deg2rad(angle)/NOP*i];
+        d = [d radius*deg2rad(abs(angle))/NOP*i];
         X = [X Xdir(1)+center(1)];
         Y = [Y Xdir(2)+center(2)];
     end

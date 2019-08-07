@@ -19,8 +19,7 @@ rho = 1.18; %air density
 load Optimus+aero
 xr = 1- xf;
 %___track___
-Track_file = 'FSN2019';
-track = [[ 50 0 50 0];[0 180 0 180];[0 10 0 10]];
+load FSATA_Endurance_Track
 %___Algo___
 step = 0.01;
 
@@ -57,8 +56,8 @@ xlswrite(Filename,Concept_Name,Sheet,strcat('A',num2str(row))) ; %Write in Excel
 R_turn = 8.5;
 A_turn = 360;
 Turn
+disp('Temps au skidpad :')
 disp(t_turn(end))
-disp(V_turn(1))
 
 xlswrite(Filename,t_turn(end),Sheet,strcat('G',num2str(row))) ; %Write in Excel File
 
@@ -67,9 +66,9 @@ xlswrite(Filename,t_turn(end),Sheet,strcat('G',num2str(row))) ; %Write in Excel 
 D_acc = 75;
 Vi =0;
 Accel
-plot(t_acc,V_acc*3.6)
+disp("Temps à l'accélération :")
 disp(t_acc(end))
-disp(V_acc(end)*3.6)
+
 
 xlswrite(Filename,t_acc(end),Sheet,strcat('I',num2str(row))) ; %Write in Excel File
 
@@ -101,6 +100,7 @@ Plot_track
 %__Loop__
 
 for sector=1:length(track)
+    disp(sector)
     if (track(1,sector) == 0)
         A_turn = track(2,sector);
         R_turn = track(3,sector);
@@ -137,7 +137,7 @@ xlswrite(Filename,t(end),Sheet,strcat('E',num2str(row))) ; %Write in Excel File
 track_plot(interp1(d_track,X,d)',interp1(d_track,Y,d)',V')
 
 %Open the Excel File
-winopen(Filename)
+%winopen(Filename)
 
 %% Functions
 
@@ -152,6 +152,6 @@ c = colorbar;
 xlabel('X (m)')
 ylabel('Y (m)')
 c.Label.String = 'Vitesse Km/h';
-
+axis equal
 end
 
