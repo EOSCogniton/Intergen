@@ -15,6 +15,7 @@
 V_brake = [Vo/3.6]; %vitesse du véhicule en m/s
 d_brake = [D_brake]; %distance parcouru en m
 t_brake = [0]; % temps écoulé en s
+
 %__loop__
 while (d_brake(1)>0) &&(t_brake(1)>-10) 
     a = (-(m_t*g+1/2*rho*S*Cz*(V_brake(1)/3.6)^2)*Long_tire_grip-1/2*rho*S*Cx*(V_brake(1)/3.6)^2)/m_t;
