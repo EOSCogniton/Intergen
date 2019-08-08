@@ -4,24 +4,24 @@ clear all
 
 %___Vehicle geometry___
 W = 1.575; % wheelbase (m)
-D_wheel = 0.52; % Wheel diameter (m)
+D_wheel = 0.45; % Wheel diameter (m)
 Tf= 1.236 ; % rear track width of the car (m)
 Tr= 1.165 ; % front track width of the car (m)
 
 %___Masses and inertias___
 m_aero = 0; %Mass of the aerodynamic features (kg)
 h_aero= 0.4 ; %Heigh of the center of gravity of the aerodynaic features (m)
-m_p = 55; % Mass of the pilot (kg)
+m_p = 70; % Mass of the pilot (kg)
 h_p = 0.42; % %Heigh of the center of gravity of the pilote (m)
-m_v = 215; % Mass of the vehicle (kg)
-h_v = 0.31; % %Heigh of the center of gravity of the du vehicle (m)
+m_v = 205; % Mass of the vehicle (kg)
+h_v = 0.29; % %Heigh of the center of gravity of the du vehicle (m)
 m_t = m_v + m_p + m_aero; %Mass Total (kg)
 h= (m_v*h_v + h_p*m_p + m_aero*h_aero)/m_t ; %Global CoG 
 
-rep = 0.6; % Mass distribution on the rear axle (%)
+rep = 0.5; % Mass distribution on the rear axle (%)
 xf = W*(1-rep);   % distance entre le train avant et le C.G.
 
-Jjp = 0.313; %Inertie de la roue et du pneu (CATIA)
+Jjp = 0.250; %Inertie de la roue et du pneu (CATIA)(à touver pour du 10 pouce)
 Jm = 0.005; %Inertie du moyeu et du freinage (CATIA)
 Ja = 0.00005; %inertie d'un arbre de transmission  (CATIA)
 Jd = 0.03; %Inertie du différentiel (CATIA)
@@ -32,13 +32,13 @@ J_rot = 2*(Jjp+Jm+Ja)+Jd+Jc+Jmot; % Inertie equivalente des masses en rotation (
 %___Tyres ___
 
 %Longi
-Long_tire_grip = 1.5;
+Long_tire_grip = 1.4;
 coeff_roul = 0.01; % Coefficient de resistance au roulement du pneu
 %Lateral
 %Donnees extraites des modeles de GTE
 %Le coefficient q est un coeff donné par les testeurs de pneus: ils estiment
 % qu'une vraie piste adhère q fois moins que leur banc d'essai (il valait 2/3 au début)
-q=0.75;%0.483 ; %pourquoi avoir mit cette valeur sortie du chapeau ? d'autant que 2/3 permet d'obtenir un temps correct au skidpad
+q=0.7;%0.483 ; %pourquoi avoir mit cette valeur sortie du chapeau ? d'autant que 2/3 permet d'obtenir un temps correct au skidpad
 
 
 FZ = [0,667.233,444.822,1112.055,222.411,1556.877] ; %Force vertical (N)
@@ -94,7 +94,7 @@ Cx = 0.8; %coefficient de trainé
 Cz_rep = 0.47; %répartition de la déportance sur l'essieu arrière
 %% Save of the workspace
 
-save('Optimus_accel')
+save('10pouces_sans_aero')
 
 %% Functions
 

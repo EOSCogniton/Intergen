@@ -33,7 +33,7 @@ j = 0; % Numero du point de fonctionnement du moteur
 t_acc = [0]; % Temps
 V_acc = [v]; % Vitesse
 A = [0]; % Acceleration en g
-R = [r_pat]; % Regime de patinage
+RPM_acc = [r_pat]; % Regime moteur
 C = [0]; % Couple
 d_acc = [0]; % Distance
 E = [1]; % Embrayage 1=debraye, 0=embraye
@@ -74,7 +74,7 @@ while dsim < D_acc
     else
         E = [E,0];
     end
-    R = [R r];
+    RPM_acc = [RPM_acc r];
     % Acceleration
     if (u < n) || (r > r_rupteur) % Changement de rapport
         a=0; % Acceleration nulle si changement de rapport
