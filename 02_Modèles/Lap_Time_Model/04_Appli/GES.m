@@ -4,12 +4,25 @@
 % This simple model of Lap time is based around the model of acceleration
 % and skidpad which was already design.
 % We add a simple brake model and design an algorithm in order to mix the
-% three previous model to get a LapTime. 
+% three previous model to get a LapTime simulation. 
 %This model is not very accurrate but allow the team to see the influence
 %of the generals parameters of the car like the wheel size or the add of
 %aerodynamic feature.
 
+%__Inputs :__
+%               - global : Vehicle_file step
+%               - Starting speed (Vi)
+%               - Travel distance (D_acc)
+%               - step (: pas de temps pour la simulation
+%__Outputs :___
+%               - t_acc(end) : Temps à l'accélération
+%               - t_turn(end) : Temps au skidpad
+%               - t(end) : Temps à l'endurance
+%__Limits :__
+%               - Pas de calcul de consommation d'essence
+
 %% Parameters
+clear all, close all, %clc
 
 global xr W xf m_t g Tf Tr h Cz rho S R_turn Y_poly %global for turn model
 % ___physical___
@@ -17,32 +30,33 @@ g = 9.81; %gravity constant
 rho = 1.18; %air density
 %___car___
 load Optimus_seule
+Convert_Excel2Mat
 xr = 1- xf;
 %___track___
-%load FSATA_Endurance_Track
+load FSATA_Endurance_Track
 %___Algo___
 step = 0.01;
 
 %% Alogrithm
 
-Filename = 'Comparaison_Model.xlsx' ; %Name of the Excel file for the comparison of the different concepts
-Sheet = 'Feuil1' ; %Name of the sheet
-Range = 'B1' ; %Range for the value
+%___Export Results___
+% Filename = 'Comparaison_Model.xlsx' ; %Name of the Excel file for the comparison of the different concepts
+% Sheet = 'Feuil1' ; %Name of the sheet
+% Range = 'B1' ; %Range for the value
+% 
+% 
+% %Find the last row to add the new times
+% [num, txt, raw] = xlsread(Filename) ;
+% cellContent = 'cellToFindOnRow7';
+% for i = 1:size(txt, 1)
+%     if strcmp(txt{i, 1}, cellContent)
+%         break
+%     end
+% end
+% row = i ;
+% %%%
 
-Concept_Name = {'Test_2'} ;
-
-%Find the last row to add the new times
-[num, txt, raw] = xlsread(Filename) ;
-cellContent = 'cellToFindOnRow7';
-for i = 1:size(txt, 1)
-    if strcmp(txt{i, 1}, cellContent)
-        break
-    end
-end
-row = i ;
-%%%
-
-xlswrite(Filename,Concept_Name,Sheet,strcat('A',num2str(row))) ; %Write in Excel File
+%xlswrite(Filename,Concept_Name(1),Sheet,strcat('A',num2str(row))) ; %Write in Excel File
 
 %__Test Braking__
 
@@ -51,26 +65,35 @@ xlswrite(Filename,Concept_Name,Sheet,strcat('A',num2str(row))) ; %Write in Excel
 % Braking
 % plot(t,V_braking)
 
+    
 %__Test Turn (skidpad)__
 % 
 R_turn = 8.5;
 A_turn = 360;
 Turn
-disp('Temps au skidpad :')
+Best_time_skidpad = 4.9 ; % Best time at skidpad event (s) based on FS best time
+score_skidpad = 71.5*((Best_time_skidpad*1.25/t_turn(end))^2-1)/0.5625 + 3.5 ;
+disp('Temps au skidpad [s] :')
 disp(t_turn(end))
-
-xlswrite(Filename,t_turn(end),Sheet,strcat('G',num2str(row))) ; %Write in Excel File
+disp("Score au skidpad [pt] :")
+disp(strcat(num2str(score_skidpad),"/75"))
+% 
+% xlswrite(Filename,t_turn(end),Sheet,strcat('G',num2str(row))) ; %Write in Excel File
 
 
 %__Test Accel (75m départ arreté)__
 D_acc = 75;
-Vi =0;
+Vi =0; 
 Accel
-disp("Temps à l'accélération :")
+Best_time_accel = 3.9 ; % Best time at acceleration event (s) based on FS best time
+score_accel = 71.5*((Best_time_accel*1.5/t_turn(end))-1)/0.5 + 3.5 ;
+disp("Temps à l'accélération [s] :")
 disp(t_acc(end))
+disp("Score à l'accélération [pt] :")
+disp(strcat(num2str(score_accel),"/75"))
 
 
-xlswrite(Filename,t_acc(end),Sheet,strcat('I',num2str(row))) ; %Write in Excel File
+%xlswrite(Filename,t_acc(end),Sheet,strcat('I',num2str(row))) ; %Write in Excel File
 
 
 %__Test Forward_Backward__
@@ -125,15 +148,44 @@ for sector=1:length(track)
     end
 end
 
-
+Best_time_autoX = 49 ; % Best time at autoX event (s) based on FS best time
+Best_time_endurance = 1200 ; %23 min 
+score_autoX = 95.5*((Best_time_autoX*1.25/(t(end)))-1)/0.25 + 4.5 ;
+score_endurance = 300*((Best_time_endurance*1.333/(t(end)*24))-1)/0.333 + 25 ;
 %__Results__
-disp("Temps au tour à l'endurance :")
+disp("Temps au tour à l'autoX [s] :")
 disp(t(end))
-%plot(d,V)
+disp("Score à l'autoX [pt] :")
+disp(strcat(num2str(score_autoX),"/100"))
+plot(d,V)
+disp("Temps à l'endurance [s] :")
+disp(t(end)*24)
+disp("Score à l'endurance [pt] :")
+disp(strcat(num2str(score_endurance),"/325"))
 
-xlswrite(Filename,t(end),Sheet,strcat('E',num2str(row))) ; %Write in Excel File
+%__Test Efficiency__
+%Efficency Factor
+Tmin = Best_time_autoX ; %the fastest uncorrected elapsed driving time of all teams who are able to score points in efficiency
+Vmin = 4 ; %the lowest corrected used fuel volume of all teams who are able to score points in efficiency
+Tteam = t(end) ; %the team’s uncorrected elapsed driving time.
+Vteam = 7.6 ; %the team’s corrected used fuel volume.
+Emin = 0.2 ;
+Emax = 1 ;
+Efficiency_Factor = Tmin*Vmin/(Tteam*Vteam) ;
+score_efficiency = 100*((Emin/Efficiency_Factor-1)/(Emin/Emax-1)) ;
+disp("Comsommation à l'endurance [L] :")
+disp(Vteam)
+disp("Score à l'efficiency [pt] :")
+disp(strcat(num2str(score_efficiency),"/100"))
 
-%Display speed on the track 
+disp("Score Dynamic Events [pt] :")
+disp(strcat(num2str(score_endurance+score_accel+score_skidpad+score_autoX+score_efficiency),"/575"))
+
+
+% xlswrite(Filename,t(end),Sheet,strcat('E',num2str(row))) ; %Write in Excel File
+%  
+% %  Display speed on the track 
+figure,
 track_plot(interp1(d_track,X,d)',interp1(d_track,Y,d)',V')
 
 %Open the Excel File
