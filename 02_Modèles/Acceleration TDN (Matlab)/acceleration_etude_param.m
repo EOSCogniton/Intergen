@@ -105,7 +105,7 @@ title('Influence du temps de changement de rapport sur le temps');
 %% Influence du rapport de transmission final sur le temps
 K_f = [];
 T_k_f = [];
-for k_f = 0.25:0.01:0.4 % Bornes et pas de l'etude
+for k_f = 0.25:0.025:0.35 % Bornes 0.01:0.et pas de l'etude
     acceleration;
     K_f = [K_f,k_f];
     T_k_f = [T_k_f, t];

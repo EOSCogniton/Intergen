@@ -1,3 +1,0 @@
--aéro
--rentrer les constantes
--créer les scopes
