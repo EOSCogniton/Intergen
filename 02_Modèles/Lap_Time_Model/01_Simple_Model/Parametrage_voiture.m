@@ -1,6 +1,9 @@
 clear all
 
 %% Parameters 
+% ___physical___
+g = 9.81; %gravity constant
+rho = 1.18; %air density
 
 %___Vehicle geometry___
 W = 1.575; % wheelbase (m)
@@ -20,6 +23,7 @@ h= (m_v*h_v + h_p*m_p + m_aero*h_aero)/m_t ; %Global CoG
 
 rep = 0.5; % Mass distribution on the rear axle (%)
 xf = W*(1-rep);   % distance entre le train avant et le C.G.
+xr = 1- xf;
 
 Jjp = 0.250; %Inertie de la roue et du pneu (CATIA)(à touver pour du 10 pouce)
 Jm = 0.005; %Inertie du moyeu et du freinage (CATIA)
@@ -51,7 +55,7 @@ FY_13= [0,1783.995,1233.106,2692.902,676.343,3363.065]*q ;
 
 
 Y_poly = polyfit(FZ,FY_13,3) ;
-clear q FZ FY FY_13
+clear q %FZ FY FY_13
 
 %___Engine__
 
@@ -88,13 +92,13 @@ end
 
 %___Aero___
 
-S= 0.8 ; %surface effective pour la déportance en m²
-Cz = -0.2; %coefficient de déportance
-Cx = 0.8; %coefficient de trainé
+S= 1.14 ; %surface effective pour la déportance en m²
+Cz = 2.23; %coefficient de déportance
+Cx = 1.26; %coefficient de trainé
 Cz_rep = 0.47; %répartition de la déportance sur l'essieu arrière
 %% Save of the workspace
 
-save('10pouces_sans_aero')
+save('test_aero')
 
 %% Functions
 
