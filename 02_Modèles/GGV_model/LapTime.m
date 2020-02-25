@@ -34,8 +34,8 @@ for section=1:length(idx_Section)-1
     end
     Gx_start = Gx(end);
     Gy_start = Gy(end);
-    [V_f,Gx_f,Gy_f,t_f] = Fordward(V_start,Gx_start,Gy_start,R(idx_Section(section):idx_Section(section+1)+1),D(idx_Section(section):idx_Section(section+1)+1),GGV); % calcul de la vitesse si on accélère à fond depuis le point initial
-    [V_b,Gx_b,Gy_b,t_b] = Backward(V_end,Gy_end,R(idx_Section(section):idx_Section(section+1)),D(idx_Section(section):idx_Section(section+1)+1),GGV); % calcul de la vitesse si on freine à fond depuis le point final
+    [V_f,Gx_f,Gy_f,t_f] = Fordward(V_start,Gx_start,Gy_start,R(idx_Section(section):idx_Section(section+1)),D(idx_Section(section):idx_Section(section+1)),GGV); % calcul de la vitesse si on accélère à fond depuis le point initial
+    [V_b,Gx_b,Gy_b,t_b] = Backward(V_end,Gy_end,R(idx_Section(section):idx_Section(section+1)),D(idx_Section(section):idx_Section(section+1)),GGV); % calcul de la vitesse si on freine à fond depuis le point final
     %On garde la vitesse la plus faible à chaque instant
     id_f = (V_f<V_b);
     V = [V; V_f(id_f); V_b(~id_f)];
@@ -46,6 +46,7 @@ end
 
 disp("Lap Time (s) :")
 disp(t(end))
+figure(2)
 track_plot(track(:,1), track(:,2), V*3.6)
 end
 

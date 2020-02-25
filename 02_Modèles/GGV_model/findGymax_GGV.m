@@ -10,6 +10,10 @@ function Y = tosolve(X,R_turn,GGV)
 % X=V
     V_GGV = GGV(:,4);
     Gy_GGV = GGV(:,3);
-    Y(1) = interp1(V_GGV,Gy_GGV,X,'linear','extrap')-X^2/R_turn;
+    if X<0
+        Y=10^5; %on évite les vitesse négatives du solveur
+    else
+        Y = interp1(V_GGV,Gy_GGV,X,'linear','extrap')-X^2/R_turn;
+    end
 
 end

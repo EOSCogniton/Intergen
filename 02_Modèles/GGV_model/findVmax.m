@@ -1,4 +1,4 @@
-function [V,Gy,Gx] = findVmax(Vp,r,rp,rs,GGV,dt,Gxp,Gyp)
+function [V,Gy,Gx] = findVmax(Vp,r,rp,GGV,dt,Gxp,Gyp)
 %This function take the radius turn of the car at a given moment as input
 %and find the speed of the car using the GGV diagramm.
 %le p après une variable signifie précédent, le s signifie suivant.

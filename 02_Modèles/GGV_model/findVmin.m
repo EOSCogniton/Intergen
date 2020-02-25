@@ -1,4 +1,4 @@
-function [V,Gy,Gx] = findVmin(Vp,r,rp,rs,GGV,dt,Gxp,Gyp)
+function [V,Gy,Gx] = findVmin(Vp,r,rp,GGV,dt,Gxp,Gyp)
 %This function take the radius turn of the car at a given moment as input
 %and find the speed of the car using the GGV diagramm.
 %le p après une variable signifie précédent, le s signifie suivant.
@@ -8,8 +8,8 @@ if abs(r)==150
     V = Vp - dt*Gxp;
 else
         V = Vp - dt*Gxp;
-        ddr = (rp+rs-2*r)/(2*dt);
-        Gy = abs(ddr - V^2/r);
+%        ddr = (rp+rs-2*r)/(2*dt);
+        Gy = abs(V^2/r);
         Gx = findGxmin(abs(Gy),V,GGV);
 %     dr = (r-rp)/dt;
 %     ddr = (rp+rs-2*r)/(2*dt);
