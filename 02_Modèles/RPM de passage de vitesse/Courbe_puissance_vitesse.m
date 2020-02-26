@@ -29,9 +29,10 @@ cmot = cmot*25/15-26.6;
 %% Display
 
 hold on
-for gear=1:nb_gear-1
-    plot(rmot*2*pi/60*primaire*K(gear)*final*D_roue/2*3.6,cmot/primaire/K(gear)/final)
+for gear=1:nb_gear
+    plot(rmot*2*pi/60*primaire*K(gear)*final*D_roue/2*3.6,cmot/primaire/K(gear)/final,'DisplayName',num2str(gear))
 end
+legend
 title('Couple à la roue pour chaque rapport')
 xlabel('Vitesse (km/h)')
 ylabel('Couple (N.m)')

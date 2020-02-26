@@ -45,7 +45,7 @@ for gear=1:nb_gear-1
         HT = interp1(RPM_HP,cmot,RPM)*K(gear);
         LT = interp1(RPM_HP,cmot,K(gear)/K(gear+1)*RPM)*K(gear+1);
         C = abs(HT-LT);
-        if C<Cmin;
+        if C<Cmin
             RPM_opt(gear) = RPM;
             Cmin = C;
         end

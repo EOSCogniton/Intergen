@@ -55,8 +55,8 @@ FZ = [0,667.233,444.822,1112.055,222.411,1556.877] ; %Force vertical (N)
 FY= [0,1783.995,1233.106,2692.902,676.343,3363.065]*q ;
 
 
-Y_poly = polyfit(FZ,FY_13,3) ;
-clear q %FZ FY FY_13
+%Y_poly = polyfit(FZ,FY_13,3) ;
+%clear q %FZ FY FY_13
 
 %___Engine__
 

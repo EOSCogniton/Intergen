@@ -53,7 +53,8 @@ for gear=1:5
         k = 6-gear; % Rapport engage
     end
 end
-Ke = k;
+Ke = 1;
+k = 1;
 
 b = coeff_roul*2/D_wheel; % Decalage du point d'appui (m)
 c_roul = m_t*g*b; % Resistance au roulement (N.m)

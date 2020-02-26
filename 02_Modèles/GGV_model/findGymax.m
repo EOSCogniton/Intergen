@@ -25,14 +25,14 @@
 
 function [amax,V_turn] = findGymax(R_turn,param_file)
 %import parameters :
-load(param_file,'xr','W','xf','m_t','g','Tf','Tr','h','Cz','rho','S','FZ','FY_13','Cz_rep')
+load(param_file,'xr','W','xf','m_t','g','Tf','Tr','h','Cz','rho','S','FZ','FY','Cz_rep')
 
 % Searching for the maximal lateral acceleration for this turn : 
 options = optimset('Algorithm','Levenberg-Marquardt','Display','off');
 
-f1 = @(x) force(x,xr, W, xf, m_t, g, Tf, Tr, h, Cz, rho, S, R_turn, FZ,FY_13,Cz_rep);
-f2 = @(x) force_f(x,xr, W, m_t, g, Tf, h, Cz, rho, S, R_turn, FZ,FY_13,Cz_rep);
-f3 = @(x) force_r(x, W, xf, m_t, g, Tf, Tr, h, Cz, rho, S, R_turn, FZ,FY_13,Cz_rep);
+f1 = @(x) force(x,xr, W, xf, m_t, g, Tf, Tr, h, Cz, rho, S, R_turn, FZ,FY,Cz_rep);
+f2 = @(x) force_f(x,xr, W, m_t, g, Tf, h, Cz, rho, S, R_turn, FZ,FY,Cz_rep);
+f3 = @(x) force_r(x, W, xf, m_t, g, Tf, Tr, h, Cz, rho, S, R_turn, FZ,FY,Cz_rep);
 
 
 x1 = fsolve(f1,2000,options) ;
@@ -47,31 +47,31 @@ end
 %% Functions
 
 %force d'adhérence latérale du pneu en fonction de la charge
-function [y] = Y(z,FZ,FY_13)
-    y = interp1(FZ,FY_13,z,'linear','extrap');
+function [y] = Y(z,FZ,FY)
+    y = interp1(FZ,FY,z,'linear','extrap');
 end
 
 
-function [F] = force(a,xr, W, xf, m_t, g, Tf, Tr, h, Cz, rho, S, R_turn, FZ,FY_13,Cz_rep)
+function [F] = force(a,xr, W, xf, m_t, g, Tf, Tr, h, Cz, rho, S, R_turn, FZ,FY,Cz_rep)
     Zfe=(xr/W)*m_t*g/2 + 1/4*Cz*rho*S*abs(a)*abs(R_turn)*(1-Cz_rep) + (xr/W)*m_t/Tf*a*h ;
     Zfi=(xr/W)*m_t*g/2 + 1/4*Cz*rho*S*abs(a)*abs(R_turn)*(1-Cz_rep) - (xr/W)*m_t/Tf*a*h ;
     Zre=(xf/W)*m_t*g/2 + 1/4*Cz*rho*S*abs(a)*abs(R_turn)*Cz_rep + (xf/W)*m_t/Tr*a*h ;
     Zri=(xf/W)*m_t*g/2 + 1/4*Cz*rho*S*abs(a)*abs(R_turn)*Cz_rep - (xf/W)*m_t/Tr*a*h ;
-    F = Y(Zfe,FZ,FY_13)+Y(Zfi,FZ,FY_13)+Y(Zre,FZ,FY_13)+Y(Zri,FZ,FY_13) - m_t*a;
+    F = Y(Zfe,FZ,FY)+Y(Zfi,FZ,FY)+Y(Zre,FZ,FY)+Y(Zri,FZ,FY) - m_t*a;
 end
 
 
-function [F_f] = force_f(a,xr, W, m_t, g, Tf, h, Cz, rho, S, R_turn, FZ,FY_13,Cz_rep)
+function [F_f] = force_f(a,xr, W, m_t, g, Tf, h, Cz, rho, S, R_turn, FZ,FY,Cz_rep)
 
     Zfe=(xr/W)*m_t*g/2 + 1/4*Cz*rho*S*abs(a)*abs(R_turn)*(1-Cz_rep) + (xr/W)*m_t/Tf*a*h ;
     Zfi=(xr/W)*m_t*g/2 + 1/4*Cz*rho*S*abs(a)*abs(R_turn)*(1-Cz_rep) - (xr/W)*m_t/Tf*a*h ;
-    F_f = Y(Zfe,FZ,FY_13)+Y(Zfi,FZ,FY_13) - (xr/W)*m_t*a ;
+    F_f = Y(Zfe,FZ,FY)+Y(Zfi,FZ,FY) - (xr/W)*m_t*a ;
 end
 
 
-function [F_r] = force_r(a, W, xf, m_t, g, Tf, Tr, h, Cz, rho, S, R_turn, FZ,FY_13,Cz_rep)
+function [F_r] = force_r(a, W, xf, m_t, g, Tf, Tr, h, Cz, rho, S, R_turn, FZ,FY,Cz_rep)
 
     Zre=(xf/W)*m_t*g/2 + 1/4*Cz*rho*S*abs(a)*(abs(R_turn)+max(Tf,Tr))*Cz_rep + (xf/W)*m_t/Tr*a*h ;
     Zri=(xf/W)*m_t*g/2 + 1/4*Cz*rho*S*abs(a)*(abs(R_turn)+max(Tf,Tr))*Cz_rep - (xf/W)*m_t/Tr*a*h ;
-    F_r = Y(Zre,FZ,FY_13)+Y(Zri,FZ,FY_13) - (xf/W)*m_t*a ;
+    F_r = Y(Zre,FZ,FY)+Y(Zri,FZ,FY) - (xf/W)*m_t*a ;
 end 
