@@ -62,7 +62,7 @@ c_roul = m_t*g*b; % Resistance au roulement (N.m)
 J_trans = m_t*D_wheel^2/4; % Inertie equivalente des masses en translation (kg.m²)
 J_eq = J_trans + J_rot; % Inertie totale (kg.m²)
 %% Simulation
-while dsim < 80
+while dsim < 150
     tsim = tsim+step;
     t_acc = [t_acc tsim];
     Ke = [Ke k]; % Memoire du rapport engage

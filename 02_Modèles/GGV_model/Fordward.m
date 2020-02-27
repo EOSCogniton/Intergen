@@ -25,7 +25,6 @@ for i = 2:length(R)
         t(i-1) = t(i-2)+dt;
     end
     [V_i,Gy_i,Gx_i] = findVmax(V(i-1),R(i),R(i-1),GGV,dt,Gx(i-1),Gy(i-1));
-    disp(V_i)
     V(i)= V_i;
     Gy(i) = Gy_i;
     Gx(i) = Gx_i;

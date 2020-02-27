@@ -7,8 +7,6 @@ if abs(r)==150
     Gx = interp1(GGV(:,4),GGV(:,1),Vp,'linear','extrap');
     V = Vp +dt*Gxp;
 else
-    disp('dt')
-    disp(dt)
     V = Vp + dt*Gxp;
     Gy = abs(V^2/r);
     Gx = findGxmax(abs(Gy),V,GGV);

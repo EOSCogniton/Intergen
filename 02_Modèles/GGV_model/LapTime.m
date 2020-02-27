@@ -1,4 +1,4 @@
-function [V,Gx,Gy,t,D] = LapTime(track_file,param_file)
+function [V,Gx,Gy,t,D,GGV] = LapTime(track_file,param_file)
 load(track_file,'track')
 
 k=LineCurvature2D(track); % Calcul de la courbure du circuit (k = 1/r)
@@ -43,6 +43,7 @@ for section=1:length(idx_Section)-1
     Gx = [Gx; Gx_f(id_f); Gx_b(~id_f)];
     t = [t; t_f(id_f)+t(end); t_b(~id_f)+t(end)];      
 end
+Gy = Gy*R/abs(R); % on signe Gy selon le signe de R;
 
 disp("Lap Time (s) :")
 disp(t(end))
