@@ -5,7 +5,6 @@ Gx = zeros(length(R),1);
 Gy = zeros(length(R),1);
 t = zeros(length(R),1);
 %init
-R = abs(R);
 V(1) = V_start;
 Gx(1) = Gx_start;
 Gy(1) = Gy_start;

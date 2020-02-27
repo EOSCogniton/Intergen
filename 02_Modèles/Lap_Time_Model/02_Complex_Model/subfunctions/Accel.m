@@ -23,7 +23,7 @@
     % Les rapport passent sans debrayer
 
 %% Paramètres simulation
-function [V_acc,Gx] = Accel(V_max,param_file)
+function [V_acc,Gx,time] = Accel(D_max,param_file)
 
 load(param_file)
 step = 0.01; %pas de calcul de la simu
@@ -62,7 +62,7 @@ c_roul = m_t*g*b; % Resistance au roulement (N.m)
 J_trans = m_t*D_wheel^2/4; % Inertie equivalente des masses en translation (kg.m²)
 J_eq = J_trans + J_rot; % Inertie totale (kg.m²)
 %% Simulation
-while dsim < 150
+while dsim < D_max  
     tsim = tsim+step;
     t_acc = [t_acc tsim];
     Ke = [Ke k]; % Memoire du rapport engage
@@ -107,7 +107,7 @@ while dsim < 150
         C = [C, c_k]; % Memoire du couple aux roues
         Ch_ar =[Ch_ar C_ar];
         a = a_ang*D_wheel/2 - F_trainee / (m_t); % Acceleration du vehicule en m/s² non_influence_de_k_f
-        Gx = [Gx,a]; % Memoire acceleration en g
+        Gx = [Gx,a]; % Memoire acceleration en m/s²
     end
     v = v + a*step; % Vitesse du vehicule
     V_acc = [V_acc v]; % Memoire de la vitesse
@@ -139,4 +139,5 @@ idx = 1:length(V_acc);
 idx = setdiff(idx,L);
 V_acc = V_acc(idx);
 Gx = Gx(idx);
+time = tsim;
 end

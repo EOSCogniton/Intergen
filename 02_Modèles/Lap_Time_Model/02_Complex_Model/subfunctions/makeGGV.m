@@ -1,13 +1,12 @@
 function GGV = makeGGV(param_file)
-load(param_file,'m_t','g','rho','S','Cz','Cx','Long_tire_grip')
+load(param_file,'m_t','g','rho','S','Cz','Cx','Long_tire_grip_brake')
 GGV = zeros(14,4);
 GGV(:,4) = (1:10:140)/3.6; %vitesse de calcul en m/s
 %Acceleration
-V_max = max(GGV(:,4));
-[V_acc,Gx] = Accel(V_max,param_file);
+[V_acc,Gx,~] = Accel(200,param_file);
 GGV(:,1) = interp1(V_acc,Gx,GGV(:,4),'linear','extrap');
 %Breaking
-GGV(:,2) = (-(m_t*g+1/2*rho*S*Cz*(GGV(:,4)/3.6).^2)*Long_tire_grip-1/2*rho*S*Cx*(GGV(:,4)/3.6).^2)/m_t;
+GGV(:,2) = (-(m_t*g+1/2*rho*S*Cz*(GGV(:,4)).^2)*Long_tire_grip_brake-1/2*rho*S*Cx*(GGV(:,4)).^2)/m_t;
 %Lateral
 Gy = zeros(15,1);
 V_Gy = zeros(15,1);
