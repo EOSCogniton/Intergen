@@ -2,7 +2,7 @@
 % By Nico and Bob for EPSA 2020
 
 % This simple model of Lap time is based around the model of acceleration
-% and skidpad which was already design.
+% and skidpad which was already designed.
 % We add a simple brake model and design an algorithm in order to mix the
 % three previous model to get a LapTime simulation. 
 %This model is not very accurrate but allow the team to see the influence
@@ -13,11 +13,15 @@
 %               - global : Vehicle_file step
 %               - Starting speed (Vi)
 %               - Travel distance (D_acc)
-%               - step (: pas de temps pour la simulation
+%               - step (: pas de temps pour la simulation)
 %__Outputs :___
 %               - t_acc(end) : Temps à l'accélération
 %               - t_turn(end) : Temps au skidpad
 %               - t(end) : Temps à l'endurance
+%               - score_skidpad : Score au skidpad  
+%               - score_accel : Score à l'accel
+%               - score_autoX : Score à l'autoX
+%               - score_endurance : Score à l'endurance
 %__Limits :__
 %               - Pas de calcul de consommation d'essence
 
@@ -31,6 +35,21 @@ rho = 1.18; %air density
 %___car___
 load Optimus_seule
 Convert_Excel2Mat
+
+% Dossier = '01_Simple_Model';
+% extension ='mat';
+%  
+% %%
+% % Récupération de la liste des fichiers de données présents dans le dossier
+% filelist = dir([Dossier,'/*',extension]);
+% nfiles = length(filelist);
+%  
+% for ifile = 1:nfiles
+%     disp(['Traitement du fichier n° ',sprintf('%d',ifile)])
+%     load filelist(ifile).name
+% end  
+  
+load Concept_2
 xr = 1- xf;
 %___track___
 load FSATA_Endurance_Track
@@ -159,7 +178,7 @@ disp("Score à l'autoX [pt] :")
 disp(strcat(num2str(score_autoX),"/100"))
 
 %Acceleration vs time
-%plot(d,V)
+plot(d,V)
 
 disp("Temps à l'endurance [s] :")
 disp(t(end)*24)
@@ -187,9 +206,9 @@ disp(strcat(num2str(score_endurance+score_accel+score_skidpad+score_autoX+score_
 
 % xlswrite(Filename,t(end),Sheet,strcat('E',num2str(row))) ; %Write in Excel File
 %  
-% %  Display speed on the track 
-%figure,
-%track_plot(interp1(d_track,X,d)',interp1(d_track,Y,d)',V')
+%  Display speed on the track 
+figure,
+track_plot(interp1(d_track,X,d)',interp1(d_track,Y,d)',V')
 
 %Open the Excel File
 %winopen(Filename)
